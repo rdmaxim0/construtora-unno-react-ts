@@ -1,14 +1,26 @@
 import { useState, useEffect } from 'react';
 import { ArrowUpRight, X, Maximize2 } from 'lucide-react';
-import luxuryHouse from '../assets/luxuryHouse.jpg'; 
-import paelImg from '../assets/PaelRJ.jpeg'
-import mizuImg from '../assets/MizuRJ.jpeg'
-import crapiImg from '../assets/CrapiCesarao.jpeg'
-import rioBonitoImg from '../assets/RioBonitoRJ.jpeg' 
+import paelImg from '../assets/PaelRJ.jpeg';
+import mizuImg from '../assets/MizuRJ.jpeg';
+import crapiImg from '../assets/CrapiCesarao.jpeg';
+import rioBonitoImg from '../assets/RioBonitoRJ.jpeg' ;
 
 
-// Dados dinâmicos dos projetos
-const projectsData = [
+// 1 - Interface: Define rigorosamente oque é um Projeto.
+
+interface Project {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+  area: string;
+  location: string;
+}
+
+// 2 - Aplicação da Tipagem: Array só aceita objetos do tipo Project.
+
+const projectsData: Project[] = [
   {
     id: 1,
     title: 'Instalação de CFTV e Adequação Civil',
@@ -45,10 +57,13 @@ const projectsData = [
     area: 'Sob consulta',
     location: 'Rio Bonito, RJ'
   }
-];
+]
+
+
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  // 3 - Tipagem de Estado: izemos ao React que este estado guarda um "Project" OU "null"
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Trava a rolagem da página quando o pop-up estiver aberto
   useEffect(() => {
@@ -70,7 +85,7 @@ const Projects = () => {
         <div className="projects-header">
           <span className="sub-title">PORTFÓLIO</span>
           <h2>Projetos Que<br />Definem o Padrão</h2>
-          <a href="#contatos" className="btn btn-outline btn-projects">
+          <a href="#contact-form" className="btn btn-outline btn-projects">
             VER OUTROS PROJETOS <ArrowUpRight size={18} strokeWidth={2} />
           </a>
         </div>
@@ -129,7 +144,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <a href="#contatos" className="btn btn-primary modal-btn" onClick={() => setSelectedProject(null)}>
+                <a href="#contact-form" className="btn btn-primary modal-btn" onClick={() => setSelectedProject(null)}>
                   SOLICITAR ORÇAMENTO PARECIDO
                 </a>
               </div>

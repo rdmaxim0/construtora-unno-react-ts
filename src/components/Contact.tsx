@@ -1,21 +1,31 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
 import luxuryHouse from '../assets/luxuryHouse.jpg';
 
+//  1 - Interface: garante que o estado apenas aceita estas propriedades exatas
+interface ContactFormData {
+  name: string;
+  phone: string;
+  service: string;
+  message: string;
+}
+
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
+    // Aplicando Tipagem ao useState
+    const [formData, setFormData] = useState<ContactFormData>({
         name: '',
         phone: '',
         service: 'Arquitetura e Design',
         message: ''
     });
-
-    const handleChange = (e) => {
+    //  Tipando o evento de alteração para abranger Select, TextArea e Inputs
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value});
     };
     
-    const handleSubmit = (e) => {
+    // Tipando a Submissão para abranger o form
+    const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         const waNumber = "5521972326300";
         const text = `Olá, Unno Engenharia! Meu nome é *${formData.name}*.\n\nGostaria de solicitar um orçamento para o serviço de *${formData.service}*.\n\n*Detalhes do Projeto:*\n${formData.message}\n\n*Meu Telefone:* ${formData.phone}`;
@@ -27,7 +37,7 @@ const Contact = () => {
     return (
         <section id="contatos" className="contact-section">
       <div className="container contact-container">
-        <div className="contact-form-wrapper">
+        <div className="contact-form-wrapper" id="contact-form">
           <form className="contact-form" onSubmit={handleSubmit}>
             <h3>Solicite um Orçamento</h3>
             <p>Preencha os dados e falaremos com você via WhatsApp.</p>
@@ -55,7 +65,7 @@ const Contact = () => {
 
             <div className="form-group">
               <label htmlFor="message">Detalhes do Projeto</label>
-              <textarea id="message" name="message" className="form-control" rows="4" placeholder="Conte-nos um pouco sobre o que você deseja construir..." value={formData.message} onChange={handleChange} required></textarea>
+              <textarea id="message" name="message" className="form-control" rows={4} placeholder="Conte-nos um pouco sobre o que você deseja construir..." value={formData.message} onChange={handleChange} required></textarea>
             </div>
 
             <button type="submit" className="btn btn-primary btn-submit">

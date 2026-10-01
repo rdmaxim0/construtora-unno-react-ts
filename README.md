@@ -1,105 +1,22 @@
-# Website Institucional — Template Base & Portfolio
+# Construtora Unno | TypeScript Enterprise Migration
 
-Template institucional moderno desenvolvido em React, focado em alta performance, responsividade e conversão direta via WhatsApp. Estruturado de forma modular para servir como base reutilizável para futuros projetos de landing pages e sites corporativos.
+Evolução do projeto "Construtora Unno" para um padrão de desenvolvimento corporativo rigoroso, migrando toda a base de código JavaScript para **TypeScript**. 
 
----
+## Visão Geral do Projeto
+Esta iteração eleva a segurança e previsibilidade do código. A implementação de tipagem estática assegura que os contratos de dados são respeitados entre componentes, eliminando *bugs* de execução (runtime errors) comuns em aplicações JavaScript de larga escala.
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
+* **React 18 + Vite:** Ambiente de desenvolvimento ultra-rápido configurado para módulo `bundler`.
+* **TypeScript:** Tipagem estática rigorosa (`Strict Mode` ativado).
+* **SASS (SCSS):** Arquitetura de estilos modular.
 
-- **Framework Front-end:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Linguagem:** JavaScript (ES6+)
-- **Estilização:** Tailwind CSS / CSS Modules
-- **Ícones:** Lucide React / React Icons
-- **Deploy:** Vercel / Cloudflare Pages
+## Destaques da Migração TypeScript
+* **Interfaces de Dados:** Definição rigorosa de modelos de dados, como a interface `Project`, garantindo a integridade dos metadados exibidos na galeria de portfólio.
+* **Tipagem de Formulários e Eventos:** O componente de contacto implementa a interface `ContactFormData` e tipagem estrita de eventos do DOM (`React.ChangeEvent`, `React.FormEvent`), blindando a recolha de dados de inputs, selects e textareas.
+* **Proteção de Null Checks:** Resolução de inferências e asserções não-nulas (`!`) na inicialização da árvore do React.
+* **Configuração de Ambiente:** Configuração avançada do `tsconfig.json` e declaração de tipos de assets (`vite-env.d.ts`) para suporte nativo a importações de media.
 
----
-
-## 📁 Estrutura do Projeto
-
-```text
-├── public/
-│   └── favicon.ico
-├── src/
-│   ├── assets/              # Imagens dos projetos, logos e mídias estáticas
-│   │   ├── projects/
-│   │   └── brand/
-│   ├── components/          # Componentes visuais reutilizáveis
-│   │   ├── Header.jsx
-│   │   ├── Footer.jsx
-│   │   ├── ProjectCard.jsx
-│   │   ├── WhatsAppButton.jsx
-│   │   └── ContactSection.jsx
-│   ├── data/                # Dados centralizados e mockados
-│   │   └── projectsData.js   # Catálogo completo de serviços/projetos
-│   ├── styles/              # Configurações globais de CSS
-│   ├── App.jsx              # Composição principal das seções
-│   └── main.jsx             # Ponto de entrada da aplicação
-├── .env.example             # Exemplo de variáveis de ambiente
-├── package.json
-└── vite.config.js
-```
-
----
-
-## ⚙️ Configurações Principais
-
-### 1. Atualização dos Projetos (`src/data/projectsData.js`)
-Os projetos seguem um schema unificado:
-
-```javascript
-export const projectsData = [
-  {
-    id: 1,
-    title: 'Nome do Projeto',
-    category: 'Área de Atuação',
-    image: projectImg,
-    description: 'Resumo técnico detalhado da execução.',
-    area: 'Sob consulta', // Ou metragem exata: '450m²'
-    location: 'Cidade, UF'
-  }
-];
-```
-
-### 2. Integração WhatsApp
-O link de conversão direta para o WhatsApp utiliza a API oficial com mensagem pré-definida:
-
-```javascript
-const phoneNumber = "5521999999999"; // DDI + DDD + Número sem espaços/traços
-const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para serviços técnicos.");
-const whatsappUrl = `[https://wa.me/$](https://wa.me/$){phoneNumber}?text=${message}`;
-```
-
----
-
-## 🚀 Como Rodar Localmente
-
-1. **Clone o repositório:**
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_PROJETO>
-   ```
-
-2. **Instale as dependências:**
-   ```bash
-   npm install
-   ```
-
-3. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
-
-4. **Gerar build de produção:**
-   ```bash
-   npm run build
-   ```
-
----
-
-## 📋 Checklist de Manutenção Periódica
-
-- [ ] Verificar integridade e resolução das fotos em `src/assets`.
-- [ ] Testar links de redirecionamento do WhatsApp em dispositivos desktop e mobile.
-- [ ] Checar renovação do domínio e validade do certificado SSL.
-- [ ] Executar `npm audit` para corrigir dependências vulneráveis.
-- [ ] Analisar métricas de velocidade no Google PageSpeed Insights.
+## Como Executar Localmente
+1. Clone o repositório: `git clone https://github.com/SEU-USUARIO/unno-engenharia-react-ts.git`
+2. Instale as dependências: `npm install`
+3. Inicie o servidor de desenvolvimento: `npm run dev`
